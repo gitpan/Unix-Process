@@ -8,7 +8,7 @@ use warnings;
 use AutoLoader;
 use Carp;
 
-our $VERSION = "1.1";
+our $VERSION = "1.1.1";
 
 use vars qw($AUTOLOAD);
 
@@ -37,7 +37,7 @@ __END__
 
 =head1 NAME
 
-Unix::Process = Perl extension to get pid info.
+    Unix::Process Perl extension to get pid info from (/bin/ps).
 
 =head1 SYNOPSIS
 
