@@ -1,0 +1,26 @@
+#!/bin/sh
+# $Id: Distro,v 1.2 2003/08/04 13:32:17 jettero Exp $
+
+./distclean
+cpansign sign
+perl Makefile.PL && make dist
+
+mkdir -p dist
+
+n=`ls Unix*gz`;
+date=`date`;
+cat Process.pm | pod2html > ./dist/Process.html
+rm -vf pod* ./dist/Unix*gz
+mv -v Unix*gz ./dist/
+
+cat > ./dist/Process.b.html << EOF
+<p>
+I needed a way to get info about a process.  I wanted it to work under BSD and Linux.
+Check out the man page: <a href="?eo_cat=Process.html">Unix::Process module</a> (<a href="$n">$n</a>).
+EOF
+
+ssh mei.net "(cd /home/dillhome/voltar/html/PerlModules/; rm *Process*)"
+scp dist/* mei.net:/home/dillhome/voltar/html/PerlModules/
+ssh mei.net "(cd /home/dillhome/voltar/html/PerlModules/; chmod 644 *.html *.gz)"
+
+rm -rvf dist
