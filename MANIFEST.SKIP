@@ -4,3 +4,5 @@ CVS
 .cvsignore
 cgoban.*
 ^blib
+.gitignore
+.git

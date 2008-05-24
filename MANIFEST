@@ -8,5 +8,5 @@ t/main.t
 distclean
 makeitfromscratch
 Distro
-SIGNATURE
-t/signature.t
+lgpl-2.1.txt.gz
+META.yml                                 Module meta-data (added by MakeMaker)
