@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                Unix-Process
-version:             1.2.2
+version:             1.300_000
 abstract:            ~
 license:             ~
 author:              ~
@@ -8,7 +8,6 @@ generated_by:        ExtUtils::MakeMaker version 6.44
 distribution_type:   module
 requires:     
     IPC::System::Simple:           0
-    version:                       0
 meta-spec:
     url:     http://module-build.sourceforge.net/META-spec-v1.3.html
     version: 1.3
