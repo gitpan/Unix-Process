@@ -1,3 +1,0 @@
-#!/bin/sh
-
-[ -f Makefile ] && make distclean 2>&1 | hi '(?i:not in manifest):.*' umber

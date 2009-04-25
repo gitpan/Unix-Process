@@ -1,14 +1,11 @@
 package Unix::Process;
 
-# $Id: Process.pm,v 1.9 2003/08/04 13:32:17 jettero Exp $
-# vi:fdm=marker fdl=0:
-
 use strict;
 use warnings;
 use Carp;
-use IPC::System::Simple qw(capture);
+use IPC::System::Simple qw(capturex);
 
-our $VERSION    = '1.31';
+our $VERSION    = '1.3101';
 our $PS_PROGRAM = $ENV{PS_PATH} || '/bin/ps';
 our $AUTOLOAD;
 
@@ -21,7 +18,7 @@ sub AUTOLOAD {
     my $f = sub {
         my $this = shift;
         my $pid  = shift; $pid = $$ unless $pid and int($pid);
-        my $result = eval { capture($PS_PROGRAM, '-o', $sub, '-p', $pid) };
+        my $result = eval { capturex($PS_PROGRAM, '-o', $sub, '-p', $pid) };
 
         croak $@ if $@;
 
@@ -31,9 +28,9 @@ sub AUTOLOAD {
 
     {
         no strict 'refs';
-        *$AUTOLOAD = $f;
+        *{$AUTOLOAD} = $f;
     }
-    &$f;
+    goto &$f;
 }
 
 __END__
@@ -41,7 +38,7 @@ __END__
 
 =head1 NAME
 
-    Unix::Process Perl extension to get pid info from (/bin/ps).
+Unix::Process - Perl extension to get pid info from (/bin/ps).
 
 =head1 SYNOPSIS
 
@@ -56,7 +53,7 @@ All fields from the ps command can be fetched by calling a function of their
 name (see SYNOPSIS).  If the pid is not given as an argument to the function,
 $$ (cur pid) is assumed.
 
-BTW, this module is really just a giant AUTOLOAD to interact with the /bin/ps
+This module is really just a giant AUTOLOAD to interact with the /bin/ps
 command.  I suppose I could be talked into doing something real with it some
 day.
 
@@ -67,7 +64,7 @@ C<"/bin/ps">.
 
 =head1 AUTHOR
 
-Paul Miller <paul@cpan.org>
+Paul Miller C<< <jettero@cpan.org> >>
 
 I am using this software in my own projects...  If you find bugs, please
 please please let me know. :) Actually, let me know if you find it handy at
@@ -75,7 +72,7 @@ all.  Half the fun of releasing this stuff is knowing that people use it.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2007 Paul Miller -- LGPL [attached]
+Copyright (c) 2007-2009 Paul Miller -- LGPL
 
 =head1 SEE ALSO
 

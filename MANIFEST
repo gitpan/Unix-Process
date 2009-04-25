@@ -5,8 +5,4 @@ MANIFEST.SKIP
 Makefile.PL
 README
 t/main.t
-distclean
-makeitfromscratch
-Distro
-lgpl-2.1.txt.gz
 META.yml                                 Module meta-data (added by MakeMaker)
